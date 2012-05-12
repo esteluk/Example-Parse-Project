@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Your unique, secret Parse.com applicationId and credential -->
+    
+    <string name="applicationId"></string>
+    <string name="clientKey"></string>
+
+</resources>
