@@ -1,5 +1,6 @@
 package com.nathanwong.carboot;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,20 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 public class RegisterFragment extends Fragment {
+	
+	private OnRegisteredListener onRegisteredListener;
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		
+		try {
+			onRegisteredListener = (OnRegisteredListener) activity;			
+		} catch (ClassCastException e) {
+			throw new ClassCastException (activity.toString() +
+					"must implement OnRegisteredListener");
+		}
+	}
 	
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
@@ -62,8 +77,7 @@ public class RegisterFragment extends Fragment {
 							progressSpinner.setVisibility(View.INVISIBLE);
 							
 							if (e == null) {
-								// Registered successfully, redirect somewhere cool.
-								setErrorText("Registered successfully");
+								onRegisteredListener.onRegistered(getString(R.string.register_form_success));
 							} else {
 								if (e.getCode() == ParseException.EMAIL_MISSING) {
 									setErrorText(getString(R.string.register_form_error_email_required));
@@ -92,6 +106,10 @@ public class RegisterFragment extends Fragment {
 				}
 			}
 		});
+	}
+	
+	public interface OnRegisteredListener {
+		public void onRegistered(String message);
 	}
 	
 	public void setErrorText(String text) {
