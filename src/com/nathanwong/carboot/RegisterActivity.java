@@ -8,7 +8,7 @@ public class RegisterActivity extends Activity implements RegisterFragment.OnReg
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.register_activity);
+		setContentView(R.layout.activity_register);
 	}
 
 	@Override

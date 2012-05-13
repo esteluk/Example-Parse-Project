@@ -21,6 +21,9 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 public class ItemListFragment extends ListFragment {
+	
+	MenuItem refreshItem;
+	
 	private final static String TAG = "ItemListFragment";
 	private ArrayList<HashMap<String, String>> listItems = new ArrayList<HashMap<String, String>>(2);
 	
@@ -56,6 +59,8 @@ public class ItemListFragment extends ListFragment {
     @Override
     public void onPrepareOptionsMenu (Menu menu) {
     	super.onPrepareOptionsMenu(menu);
+    	
+    	refreshItem = menu.findItem(R.id.menu_action_list_refresh);
     	
     	if (! ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
 	    	MenuItem registerItem = menu.findItem(R.id.menu_action_register);
@@ -103,12 +108,20 @@ public class ItemListFragment extends ListFragment {
     }
     
     private void populateItems() {
+    	if (refreshItem != null)
+    		refreshItem.setActionView(R.layout.refresh_spinner);
+    	
     	ParseQuery listQuery = new ParseQuery("listItems");
-    	listQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
+    	// Ideally we'd use CACHE_THEN_NETWORK here, but we'd then want to only change the
+    	// ActionView on the second callback, because CACHE_THEN_NETWORK calls FindCallback() twice
+    	listQuery.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 		listQuery.findInBackground(new FindCallback() {
 
 			@Override
 			public void done(List<ParseObject> itemList, ParseException e) {
+				if (refreshItem != null)
+					refreshItem.setActionView(null);
+				
 				if (e == null) {
 					listItems = new ArrayList<HashMap<String, String>>(2);
 					

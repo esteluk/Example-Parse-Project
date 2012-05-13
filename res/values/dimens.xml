@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="fragment_padding">20dip</dimen>
+    <dimen name="refresh_action_padding">12dip</dimen>
     
 </resources>
