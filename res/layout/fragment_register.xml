@@ -38,12 +38,6 @@
         android:hint="@string/register_form_password_text"
         android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/button_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/register_form_submit" />
-
     <ProgressBar
         android:id="@+id/register_spinner"
         android:layout_width="match_parent"

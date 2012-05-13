@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.parse.ParseException;
@@ -18,6 +19,8 @@ import com.parse.ParseObject;
 import com.parse.SaveCallback;
 
 public class NewItemFragment extends Fragment {
+	
+	ProgressBar spinner;
 	
 	private OnNewItemSavedListener onNewItemSavedListener;
 	private static String TAG = "NewItemFragment";
@@ -51,6 +54,13 @@ public class NewItemFragment extends Fragment {
 	}
 	
 	@Override
+	public void onActivityCreated (Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		
+		spinner = (ProgressBar) getView().findViewById(R.id.newitem_spinner);
+	}
+	
+	@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     	super.onCreateOptionsMenu(menu, inflater);
     	
@@ -68,9 +78,8 @@ public class NewItemFragment extends Fragment {
     	
     	switch(item.getItemId()) {
     		case(R.id.menu_action_newitem_accept):
-    			Log.d(TAG, "Pressed tick!");
+    			spinner.setVisibility(View.VISIBLE);
     			saveObject();
-    			
     			
     			return true;
     		
@@ -85,6 +94,7 @@ public class NewItemFragment extends Fragment {
 		item.put("title", title.getText().toString());
 		item.saveInBackground(new SaveCallback() {
 			public void done(ParseException e) {
+				spinner.setVisibility(View.INVISIBLE);
 				if (e == null) {
 					// Successfully saved. Report to parent.
 					onNewItemSavedListener.onNewItemSaved();
