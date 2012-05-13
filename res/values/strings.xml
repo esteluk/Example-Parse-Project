@@ -16,4 +16,6 @@
 	<string name="register_form_error_password_required">Whoops, did you forget to enter a password?</string>
 	<string name="register_form_error_unknwon">An unknown error has occurred.</string>
 	<string name="register_form_success">Thanks for registering!</string>
+	<string name="menu_add_item_text">Add item</string>
+	<string name="menu_add_item_text_short">Add</string>
 </resources>
