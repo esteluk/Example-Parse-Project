@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.parse.Parse;
+import com.parse.ParseAnonymousUtils;
 import com.parse.ParseUser;
 
 public class CarBootInventoryActivity extends Activity {
@@ -28,6 +29,19 @@ public class CarBootInventoryActivity extends Activity {
     	MenuInflater inflater = getMenuInflater();
     	inflater.inflate(R.menu.home, menu);
     	
+    	return true;
+    }
+    
+    @Override
+    public boolean onPrepareOptionsMenu (Menu menu) {
+    	super.onPrepareOptionsMenu(menu);
+    	
+    	if (! ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+	    	MenuItem item = menu.findItem(R.id.menu_action_register);
+	    	item.setEnabled(false);
+	    	item.setVisible(false);
+    	}
+
     	return true;
     }
     
