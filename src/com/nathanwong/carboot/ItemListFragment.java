@@ -1,7 +1,5 @@
 package com.nathanwong.carboot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import android.app.ListFragment;
@@ -11,7 +9,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.SimpleAdapter;
 
 import com.parse.FindCallback;
 import com.parse.ParseAnonymousUtils;
@@ -25,7 +22,6 @@ public class ItemListFragment extends ListFragment {
 	MenuItem refreshItem;
 	
 	private final static String TAG = "ItemListFragment";
-	private ArrayList<HashMap<String, String>> listItems = new ArrayList<HashMap<String, String>>(2);
 	
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
@@ -123,20 +119,7 @@ public class ItemListFragment extends ListFragment {
 					refreshItem.setActionView(null);
 				
 				if (e == null) {
-					listItems = new ArrayList<HashMap<String, String>>(2);
-					
-					HashMap<String, String> map;
-			    	for (ParseObject object : itemList) {
-			    		map = new HashMap<String, String>();
-			    		map.put("title", object.getString("title"));
-			    		
-			    		listItems.add(map);
-			    	}
-			    	
-			    	String[] from = {"title"};
-			    	int[] to = {android.R.id.text1};
-			    	
-			    	SimpleAdapter adapter = new SimpleAdapter(getActivity(), listItems, android.R.layout.simple_list_item_1, from, to);
+					ItemArrayAdapter adapter = new ItemArrayAdapter(getActivity(), R.layout.list_row, itemList);
 			    	setListAdapter(adapter);
 				} else {
 					Log.d(TAG, "Error: " + e.getMessage());
