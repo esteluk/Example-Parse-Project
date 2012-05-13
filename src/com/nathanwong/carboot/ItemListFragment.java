@@ -88,6 +88,7 @@ public class ItemListFragment extends ListFragment {
     
     private void populateItems() {
     	ParseQuery listQuery = new ParseQuery("listItems");
+    	listQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
 		listQuery.findInBackground(new FindCallback() {
 
 			@Override
