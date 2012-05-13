@@ -44,7 +44,7 @@ public class RegisterFragment extends Fragment {
 							  ViewGroup container,
 							  Bundle savedInstanceState) {
 		// Create the fragment's UI
-		return inflater.inflate(R.layout.register, container, false);
+		return inflater.inflate(R.layout.fragment_register, container, false);
 	}
 	
 	@Override
