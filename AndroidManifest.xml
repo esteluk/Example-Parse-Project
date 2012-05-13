@@ -32,6 +32,11 @@
             android:label="@string/activity_newitem_name">
         </activity>
         
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/activity_login_name">
+        </activity>
+        
     </application>
 
 </manifest>

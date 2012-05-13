@@ -42,6 +42,7 @@ public class ItemListFragment extends ListFragment {
 	public void onResume () {
 		super.onResume();
 		
+		getActivity().invalidateOptionsMenu();
 		populateItems();
 	}
 	
@@ -57,9 +58,13 @@ public class ItemListFragment extends ListFragment {
     	super.onPrepareOptionsMenu(menu);
     	
     	if (! ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
-	    	MenuItem item = menu.findItem(R.id.menu_action_register);
-	    	item.setEnabled(false);
-	    	item.setVisible(false);
+	    	MenuItem registerItem = menu.findItem(R.id.menu_action_register);
+	    	registerItem.setEnabled(false);
+	    	registerItem.setVisible(false);
+	    	
+	    	MenuItem loginItem = menu.findItem(R.id.menu_action_login);
+	    	loginItem.setEnabled(false);
+	    	loginItem.setVisible(false);
     	}
     }
     
@@ -78,6 +83,12 @@ public class ItemListFragment extends ListFragment {
     		
     		case(R.id.menu_action_add_item):
     			intent = new Intent(getActivity(), NewItemActivity.class);
+    			startActivity(intent);
+    			
+    			return true;
+    			
+    		case(R.id.menu_action_login):
+    			intent = new Intent(getActivity(), LoginActivity.class);
     			startActivity(intent);
     			
     			return true;

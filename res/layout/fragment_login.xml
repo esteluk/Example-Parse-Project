@@ -7,7 +7,7 @@
     android:padding="@dimen/fragment_padding" >
 
     <TextView
-        android:id="@+id/register_form_error_box"
+        android:id="@+id/login_form_error_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffff0000"
@@ -18,7 +18,7 @@
         android:visibility="invisible" />
 
     <EditText
-        android:id="@+id/edittext_email"
+        android:id="@+id/login_form_edittext_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dip"
@@ -30,22 +30,15 @@
     </EditText>
 
     <EditText
-        android:id="@+id/edittext_password"
+        android:id="@+id/login_form_edittext_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dip"
         android:ems="10"
         android:hint="@string/register_form_password_text"
         android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/button_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/register_form_submit" />
-
     <ProgressBar
-        android:id="@+id/register_spinner"
+        android:id="@+id/login_form_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dip"

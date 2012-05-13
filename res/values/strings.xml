@@ -24,4 +24,10 @@
 	<string name="newitem_form_title_hint">Title</string>
 	<string name="menu_newitem_accept_text">Accept</string>
 	<string name="newitem_form_submit_failure">Sorry, an error occured. Please try again.</string>
+	
+	<!-- Login -->
+	<string name="activity_login_name">Login</string>
+	<string name="menu_login_text">Login</string>
+	<string name="menu_login_accept_text">Login</string>
+	<string name="login_form_success">Login successful</string>
 </resources>
