@@ -22,6 +22,7 @@ import com.parse.ParseUser;
 
 public class ItemListFragment extends ListFragment {
 	private final static String TAG = "ItemListFragment";
+	private ArrayList<HashMap<String, String>> listItems = new ArrayList<HashMap<String, String>>(2);
 	
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
@@ -32,20 +33,16 @@ public class ItemListFragment extends ListFragment {
 	@Override
 	public void onActivityCreated (Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+    	
+    	populateItems();
+    	
+	}
+	
+	@Override
+	public void onResume () {
+		super.onResume();
 		
-		ParseQuery listQuery = new ParseQuery("listItems");
-		listQuery.findInBackground(new FindCallback() {
-
-			@Override
-			public void done(List<ParseObject> itemList, ParseException e) {
-				if (e == null) {
-					setupListView(itemList);
-				} else {
-					Log.d(TAG, "Error: " + e.getMessage());
-				}
-			}
-			
-		});
+		populateItems();
 	}
 	
 	@Override
@@ -89,21 +86,33 @@ public class ItemListFragment extends ListFragment {
     	}
     }
     
-    private void setupListView (List<ParseObject> items) {
-    	ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>(2);
-    	
-    	HashMap<String, String> map;
-    	for (ParseObject object : items) {
-    		map = new HashMap<String, String>();
-    		map.put("title", object.getString("title"));
-    		
-    		list.add(map);
-    	}
-    	
-    	String[] from = {"title"};
-    	int[] to = {android.R.id.text1};
-    	
-    	SimpleAdapter adapter = new SimpleAdapter(getActivity(), list, android.R.layout.simple_list_item_1, from, to);
-    	setListAdapter(adapter);
+    private void populateItems() {
+    	ParseQuery listQuery = new ParseQuery("listItems");
+		listQuery.findInBackground(new FindCallback() {
+
+			@Override
+			public void done(List<ParseObject> itemList, ParseException e) {
+				if (e == null) {
+					listItems = new ArrayList<HashMap<String, String>>(2);
+					
+					HashMap<String, String> map;
+			    	for (ParseObject object : itemList) {
+			    		map = new HashMap<String, String>();
+			    		map.put("title", object.getString("title"));
+			    		
+			    		listItems.add(map);
+			    	}
+			    	
+			    	String[] from = {"title"};
+			    	int[] to = {android.R.id.text1};
+			    	
+			    	SimpleAdapter adapter = new SimpleAdapter(getActivity(), listItems, android.R.layout.simple_list_item_1, from, to);
+			    	setListAdapter(adapter);
+				} else {
+					Log.d(TAG, "Error: " + e.getMessage());
+				}
+			}
+			
+		});
     }
 }
