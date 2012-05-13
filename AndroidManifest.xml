@@ -27,6 +27,11 @@
             android:label="@string/activity_register_name">
         </activity>
         
+        <activity
+            android:name=".NewItemActivity"
+            android:label="@string/activity_newitem_name">
+        </activity>
+        
     </application>
 
 </manifest>

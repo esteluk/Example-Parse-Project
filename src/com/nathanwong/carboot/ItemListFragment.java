@@ -70,13 +70,21 @@ public class ItemListFragment extends ListFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
     	super.onOptionsItemSelected(item);
     	
+    	Intent intent;
+    	
     	switch(item.getItemId()) {
     		case(R.id.menu_action_register):
-    			Intent intent = new Intent(getActivity(), RegisterActivity.class);
+    			intent = new Intent(getActivity(), RegisterActivity.class);
     			startActivity(intent);
     			
     			return true;
     		
+    		case(R.id.menu_action_add_item):
+    			intent = new Intent(getActivity(), NewItemActivity.class);
+    			startActivity(intent);
+    			
+    			return true;
+    			
     		default: return false;
     	}
     }

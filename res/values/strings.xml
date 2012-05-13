@@ -16,6 +16,12 @@
 	<string name="register_form_error_password_required">Whoops, did you forget to enter a password?</string>
 	<string name="register_form_error_unknwon">An unknown error has occurred.</string>
 	<string name="register_form_success">Thanks for registering!</string>
+	
+	<!-- Add item -->
+	<string name="activity_newitem_name">New Item</string>
 	<string name="menu_add_item_text">Add item</string>
 	<string name="menu_add_item_text_short">Add</string>
+	<string name="newitem_form_title_hint">Title</string>
+	<string name="menu_newitem_accept_text">Accept</string>
+	<string name="newitem_form_submit_failure">Sorry, an error occured. Please try again.</string>
 </resources>

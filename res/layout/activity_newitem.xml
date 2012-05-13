@@ -2,17 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/fragment_newitem_edittext_title"
+    <fragment
+        android:id="@+id/newitem_fragment_newitem"
+        android:name="com.nathanwong.carboot.NewItemFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/newitem_form_title_hint" >
+        android:layout_height="match_parent" >
 
-        <requestFocus />
-    </EditText>
+        <!-- Preview: layout=@layout/fragment_newitem -->
+    </fragment>
 
 </LinearLayout>
