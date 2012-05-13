@@ -3,6 +3,7 @@
     <item android:id="@+id/menu_action_register" android:icon="@drawable/icon_register" android:showAsAction="ifRoom" android:title="@string/menu_register_text"></item>
     <item android:id="@+id/menu_action_add_item" android:icon="@drawable/icon_new" android:title="@string/menu_add_item_text" android:titleCondensed="@string/menu_add_item_text_short" android:showAsAction="ifRoom"></item>
     <item android:id="@+id/menu_action_login" android:showAsAction="never" android:title="@string/menu_login_text" android:titleCondensed="@string/menu_login_text" android:icon="@drawable/icon_person"></item>
+    <item android:id="@+id/menu_action_list_refresh" android:showAsAction="ifRoom" android:icon="@drawable/icon_refresh" android:title="@string/menu_list_refresh_text" android:titleCondensed="@string/menu_list_refresh_text"></item>
     
 
 </menu>

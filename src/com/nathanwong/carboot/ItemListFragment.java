@@ -93,6 +93,11 @@ public class ItemListFragment extends ListFragment {
     			
     			return true;
     			
+    		case(R.id.menu_action_list_refresh):
+    			populateItems();
+    		
+    			return true;
+    			
     		default: return false;
     	}
     }
