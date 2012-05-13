@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseAnonymousUtils;
@@ -19,6 +22,8 @@ import com.parse.ParseUser;
 
 public class ItemListFragment extends ListFragment {
 	
+	ItemArrayAdapter adapter;
+	List<ParseObject> items;
 	MenuItem refreshItem;
 	
 	private final static String TAG = "ItemListFragment";
@@ -27,6 +32,9 @@ public class ItemListFragment extends ListFragment {
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+		
+		adapter = new ItemArrayAdapter(getActivity(), R.layout.list_row, items);
+    	setListAdapter(adapter);
 	}
 	
 	@Override
@@ -43,6 +51,19 @@ public class ItemListFragment extends ListFragment {
 		
 		getActivity().invalidateOptionsMenu();
 		populateItems();
+	}
+	
+	@Override
+	public void onListItemClick(ListView listview, View view, int position, long id) {
+		super.onListItemClick(listview, view, position, id);
+		
+		TextView objIdView = (TextView) view.findViewById(R.id.list_row_id);
+		String objId = (String) objIdView.getText();
+		
+		// Start activity passing the string id
+		Intent intent = new Intent (getActivity(), DetailActivity.class);
+		intent.putExtra("id", objId);
+		startActivity(intent);
 	}
 	
 	@Override
@@ -119,8 +140,9 @@ public class ItemListFragment extends ListFragment {
 					refreshItem.setActionView(null);
 				
 				if (e == null) {
-					ItemArrayAdapter adapter = new ItemArrayAdapter(getActivity(), R.layout.list_row, itemList);
-			    	setListAdapter(adapter);
+					items = itemList;
+					if (adapter != null)
+						adapter.notifyDataSetChanged();
 				} else {
 					Log.d(TAG, "Error: " + e.getMessage());
 				}

@@ -42,9 +42,11 @@ public class ItemArrayAdapter extends ArrayAdapter<ParseObject> {
 		}
 		
 		TextView title = (TextView) row.findViewById(R.id.list_row_text);
-		
+		TextView id = (TextView) row.findViewById(R.id.list_row_id);
 		title.setText(obj.getString("title"));
+		id.setText(obj.getObjectId());
 		
 		return row;
 	}
+	
 }
