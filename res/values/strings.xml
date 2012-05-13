@@ -3,5 +3,16 @@
 
     <string name="hello">Hello World, CarBootInventoryActivity!</string>
     <string name="app_name">Car Boot Inventory</string>
-
+    <string name="register_form_email_text">Email address</string>
+    <string name="register_form_password_text">Password</string>
+    
+    <!-- Registration -->
+	<string name="activity_register_name">Register</string>
+	<string name="menu_register_text">Register</string>
+	<string name="register_form_submit">Sign up!</string>
+	<string name="register_form_error_email_taken">Sorry, there\'s already an account with this email address.</string>
+	<string name="register_form_error_email_required">Whoops, did you forget to enter your email?</string>
+	<string name="register_form_error_email_invalid">Sorry, that\'s not a valid email address.</string>
+	<string name="register_form_error_password_required">Whoops, did you forget to enter a password?</string>
+	<string name="register_form_error_unknwon">An unknown error has occurred.</string>
 </resources>
