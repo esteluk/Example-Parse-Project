@@ -22,8 +22,8 @@ import com.parse.ParseUser;
 
 public class ItemListFragment extends ListFragment {
 	
-	ItemArrayAdapter adapter;
-	List<ParseObject> items;
+	ItemArrayAdapter adapter = null;
+	List<ParseObject> items = null;
 	MenuItem refreshItem;
 	
 	private final static String TAG = "ItemListFragment";
@@ -33,16 +33,12 @@ public class ItemListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		
-		adapter = new ItemArrayAdapter(getActivity(), R.layout.list_row, items);
-    	setListAdapter(adapter);
+		populateItems();
 	}
 	
 	@Override
 	public void onActivityCreated (Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-    	
-    	populateItems();
-    	
 	}
 	
 	@Override
@@ -141,8 +137,13 @@ public class ItemListFragment extends ListFragment {
 				
 				if (e == null) {
 					items = itemList;
-					if (adapter != null)
-						adapter.notifyDataSetChanged();
+					
+					/* Because an ArrayAdapter stores a reference to the object list
+					   it ignores changes to the underlying data and .notifyDataSet()
+					   does not work here. Have to recreate each time. */
+					adapter = new ItemArrayAdapter(getActivity(), R.layout.list_row, items);
+			    	setListAdapter(adapter);
+						
 				} else {
 					Log.d(TAG, "Error: " + e.getMessage());
 				}
